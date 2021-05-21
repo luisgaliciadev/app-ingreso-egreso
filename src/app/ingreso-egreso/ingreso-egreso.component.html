@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+
+          <div *ngIf="loading" align="center" class="loader loader--style1 load-login" title="0">
+            <h4>Registrando</h4>  
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw text-info"></i>
+            <h4>Por Favor Espere</h4>
+          </div> 
+
+          <div *ngIf="!loading"  class="card-body">
+            <h4 class="card-title">Agregar Ingreso / Egreso</h4>
+            <p class="card-description">
+              Especifique el monto y el tipo
+            </p>         
+          
+            <form [formGroup]="forma" (ngSubmit)="crearIngresoEgreso()">
+              
+              <div class="form-group">
+                <label>Descripción</label>
+                <input type="text" 
+                       class="form-control" 
+                       placeholder="Descripción"
+                       name="descripcion"
+                       formControlName="descripcion">
+              </div>
+
+              <div class="form-group">
+                  <label>Monto</label>
+                  <input type="number" 
+                         class="form-control" 
+                         placeholder="Monto"
+                         name="monto"
+                         formControlName="monto">
+                    <p>
+                      Debe de ser un monto positivo
+                    </p>
+                </div>
+
+              <div class="form-group">
+                  <label>Tipo</label>
+                  <br>
+                  <button (click)="tipo = 'egreso'" *ngIf="tipo === 'ingreso'" type="button" class="btn btn-primary btn-block">Ingreso</button>
+                  <button (click)="tipo = 'ingreso'" *ngIf="tipo === 'egreso'" type="button" class="btn btn-warning btn-block">Egreso</button>
+              </div>
+
+              <hr>
+              <button [disabled]="forma.invalid" type="submit" class="btn btn-success mr-2">
+                <i class="fa fa-save"></i>
+                Agregar
+              </button>
+
+              <button type="reset" class="btn btn-light">Cancelar</button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
+          

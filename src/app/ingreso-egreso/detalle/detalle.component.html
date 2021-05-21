@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+          <div *ngIf="loading" align="center" class="loader loader--style1 load-login" title="0">
+            <h4>Eliminando Registro</h4>  
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw text-info"></i>
+            <h4>Por Favor Espere</h4>
+          </div> 
+
+          <div *ngIf="!loading" class="card-body">
+            <h4 class="card-title">Detalle de ingreso egreso</h4>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Descripción</th>
+                  <th>Monto</th>
+                  <th>Tipo</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of items | ordenIngresoEgreso">
+                  <td>{{item.descripcion}}</td>
+                  <td>{{item.monto}}</td>
+                  <td>
+                    <span [ngClass]="{
+                                      'text-success': item.tipo === 'ingreso',
+                                      'text-danger': item.tipo === 'egreso'
+                                    }">
+                      {{item.tipo}}
+                    </span>
+                  </td>
+                  <td>
+                    <button (click)="borrarItem(item.uid)" class="btn btn-danger">
+                      <i class="fa fa-trash"></i>
+                      Borrar
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+
+
+          </div>
+        </div>
+    </div>
+</div>
+  
